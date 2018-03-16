@@ -36,6 +36,12 @@ new Vue({
             }
             return false;
         },
+        monsterAttack: function () {
+            // Deal damage to the Player
+            this.playerHealth -= this.calculateDamage(5, 12);
+            // Check if the Monster has defeated You
+            this.checkWinner(); //Doesn't need a return call after because there is no more ocde in the function
+        },
         attack: function () {
             // Deal damage to the Monster
             this.monsterHealth -= this.calculateDamage(3, 10);
@@ -44,23 +50,31 @@ new Vue({
                 return; //Stops the game if there is a winner at this point
             }
 
-            // Deal damage to the Player
-            this.playerHealth -= this.calculateDamage(5, 12);
-            // Check if the Monster has defeated You
-            this.checkWinner(); //Doesn't need a return call after because there is no more ocde in the function
-
+            this.monsterAttack();
         },
         specialAttack: function () {
+            // Deal damage to the Monster
+            this.monsterHealth -= this.calculateDamage(10, 20);
+            // Check if the Monster has been defeated
+            if (this.checkWinner()) {
+                return; //Stops the game if there is a winner at this point
+            }
 
+            this.monsterAttack();
         },
         heal: function () {
-
+            if (this.playerHealth <= 90) {
+                this.playerHealth += 10;
+            } else {
+                this.playerHealth = 100;
+            }
+            this.monsterAttack();
         },
         endGame: function (event) {
             this.playerHealth = 0;
             this.monsterHealth = 0;
             setTimeout(function () {
-                alert("You have given up and have ended the game!");
+                alert("You have given up and ended the game!");
             }, 500)
             this.newGame = true;
         }
