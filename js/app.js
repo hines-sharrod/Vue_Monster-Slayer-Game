@@ -16,33 +16,39 @@ new Vue({
         },
         checkWinner: function () {
             if (this.monsterHealth <= 0) {
-                alert('You Defeated the Monster!');
-                this.newGame = true;
-                this.monsterHealth = 0;
-                return;
+                if (confirm('You Defeated the Monster! New Game?')) {
+                    this.startNewGame();
+                } else {
+                    this.newGame = true;
+                    this.playerHealth = 0;
+                    this.monsterHealth = 0;
+                }
+                return true;
+            } else if (this.playerHealth <= 0) {
+                if (confirm('You were Defeated by the Monster! New Game?')) {
+                    this.startNewGame();
+                } else {
+                    this.newGame = true;
+                    this.playerHealth = 0;
+                    this.monsterHealth = 0;
+                }
+                return true;
             }
+            return false;
         },
         attack: function () {
             // Deal damage to the Monster
             this.monsterHealth -= this.calculateDamage(3, 10);
-
             // Check if the Monster has been defeated
-            if (this.monsterHealth <= 0) {
-                alert('You Defeated the Monster!');
-                this.newGame = true;
-                this.monsterHealth = 0;
-                return;
+            if (this.checkWinner()) {
+                return; //Stops the game if there is a winner at this point
             }
 
             // Deal damage to the Player
             this.playerHealth -= this.calculateDamage(5, 12);
-
             // Check if the Monster has defeated You
-            if (this.playerHealth <= 0) {
-                alert('You were Defeated by the Monster!');
-                this.newGame = true;
-                this.playerHealth = 0;
-            }
+            this.checkWinner(); //Doesn't need a return call after because there is no more ocde in the function
+
         },
         specialAttack: function () {
 
