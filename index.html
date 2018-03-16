@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Monster Slayer</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <div id="app" class="d-flex align-items-center">
+        <div class="container">
+            <section class="row">
+                <div class="col-sm-6 ">
+                    <h1 class="text-center">YOU</h1>
+                    <div class="healthbar">
+                        <div :style="{width: playerHealth + '%'}">
+                            <p> {{playerHealth}} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <h1 class="text-center">MONSTER</h1>
+                    <div class="healthbar">
+                        <div :style="{width: monsterHealth + '%'}">
+                            <p> {{monsterHealth}} </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="row controls" v-if="newGame">
+                <div class="col-sm-12">
+                    <button id="start-game" @click="startNewGame">START NEW GAME</button>
+                </div>
+            </section>
+
+            <section class="row controls" v-else>
+                <div class="col-sm-12 ">
+                    <button id="attack" @click="attack">ATTACK</button>
+                    <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+                    <button id="heal" @click="heal">HEAL</button>
+                    <button id="give-up" @click="endGame">GIVE UP</button>
+                </div>
+            </section>
+
+            <section class="row log" v-if="!newGame">
+                <div class="col-sm-12 ">
+                    <ul>
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
