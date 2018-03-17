@@ -9,6 +9,7 @@ body, html {
 
 #app {
     height: 100vh;
+    margin-top: 40px;
 }
 
 .text-center {

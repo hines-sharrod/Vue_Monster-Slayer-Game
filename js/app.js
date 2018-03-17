@@ -4,12 +4,14 @@ new Vue({
         playerHealth: 0,
         monsterHealth: 0,
         newGame: true,
+        turns: []
     },
     methods: {
         startNewGame: function () {
             this.newGame = false;
             this.playerHealth = 100;
             this.monsterHealth = 100;
+            this.turns = [];
         },
         calculateDamage: function (min, max) {
             return Math.max(Math.floor(Math.random() * max) + 1, min);
@@ -38,29 +40,45 @@ new Vue({
         },
         monsterAttack: function () {
             // Deal damage to the Player
-            this.playerHealth -= this.calculateDamage(5, 12);
+            var damage = this.calculateDamage(5, 12);
             // Check if the Monster has defeated You
             this.checkWinner(); //Doesn't need a return call after because there is no more ocde in the function
+            this.playerHealth -= damage;
+            this.turns.unshift({
+                isPlayer: false,
+                text: 'The monster has attacked with ' + damage + ' attack points'
+            });
+            console.log(this.turns)
         },
         attack: function () {
             // Deal damage to the Monster
-            this.monsterHealth -= this.calculateDamage(3, 10);
+            var damage = this.calculateDamage(3, 10);
+            this.monsterHealth -= damage;
+            this.turns.unshift({
+                isPlayer: true,
+                text: 'The player has attacked with ' + damage + ' attack points'
+            });
             // Check if the Monster has been defeated
             if (this.checkWinner()) {
                 return; //Stops the game if there is a winner at this point
             }
-
             this.monsterAttack();
+            console.log(this.turns);
         },
         specialAttack: function () {
+            var damage = this.calculateDamage(10, 20);
             // Deal damage to the Monster
-            this.monsterHealth -= this.calculateDamage(10, 20);
+            this.monsterHealth -= damage;
+            this.turns.unshift({
+                isPlayer: true,
+                text: 'The player has attacked hard with ' + damage + ' attack points'
+            });
             // Check if the Monster has been defeated
             if (this.checkWinner()) {
                 return; //Stops the game if there is a winner at this point
             }
-
             this.monsterAttack();
+            console.log(this.turns);
         },
         heal: function () {
             if (this.playerHealth <= 90) {
@@ -68,7 +86,12 @@ new Vue({
             } else {
                 this.playerHealth = 100;
             }
+            this.turns.unshift({
+                isPlayer: true,
+                text: 'The player has healed with a potion adding 10 to their health'
+            });
             this.monsterAttack();
+            console.log(this.turns);
         },
         endGame: function (event) {
             this.playerHealth = 0;
