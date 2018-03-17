@@ -47,6 +47,7 @@
             <section class="row log" v-if="turns.length > 0">
                 <div class="col-sm-12 ">
                     <ul>
+                        <!-- Using the Vue.js FOR loop and attaching CSS classes with conditional logic -->
                         <li v-for="turn in turns"
                             :class="{'playersTurn': turn.playersTurn, 'monstersTurn': turn.monstersTurn}">
                             {{ turn.text}}
