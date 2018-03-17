@@ -47,24 +47,15 @@ body, html {
     font-size: 22px;
 }
 
-.log ul {
-    list-style: none;
-    font-weight: bold;
-    text-transform: uppercase;
+.monstersTurn {
+    background-color: #FF0000;
+    color: #FFF;
+    margin: 5px 0;
 }
 
-.log ul li {
-    margin: 5px;
-}
-
-.log ul .player-turn {
-    color: blue;
-    background-color: #e4e8ff;
-}
-
-.log ul .monster-turn {
-    color: red;
-    background-color: #ffc0c1;
+.playersTurn {
+    background-color: cornflowerblue;
+    color: #FFF;
 }
 
 button {

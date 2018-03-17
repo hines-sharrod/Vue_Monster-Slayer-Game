@@ -45,7 +45,7 @@ new Vue({
             this.checkWinner(); //Doesn't need a return call after because there is no more ocde in the function
             this.playerHealth -= damage;
             this.turns.unshift({
-                isPlayer: false,
+                monstersTurn: true,
                 text: 'The monster has attacked with ' + damage + ' attack points'
             });
             console.log(this.turns)
@@ -55,7 +55,7 @@ new Vue({
             var damage = this.calculateDamage(3, 10);
             this.monsterHealth -= damage;
             this.turns.unshift({
-                isPlayer: true,
+                playersTurn: true,
                 text: 'The player has attacked with ' + damage + ' attack points'
             });
             // Check if the Monster has been defeated
@@ -70,7 +70,7 @@ new Vue({
             // Deal damage to the Monster
             this.monsterHealth -= damage;
             this.turns.unshift({
-                isPlayer: true,
+                playersTurn: true,
                 text: 'The player has attacked hard with ' + damage + ' attack points'
             });
             // Check if the Monster has been defeated
@@ -87,7 +87,7 @@ new Vue({
                 this.playerHealth = 100;
             }
             this.turns.unshift({
-                isPlayer: true,
+                playersTurn: true,
                 text: 'The player has healed with a potion adding 10 to their health'
             });
             this.monsterAttack();
