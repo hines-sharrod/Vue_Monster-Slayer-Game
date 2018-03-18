@@ -22,7 +22,6 @@ new Vue({
                     this.startNewGame();
                 } else {
                     this.newGame = true;
-                    this.playerHealth = 0;
                     this.monsterHealth = 0;
                 }
                 return true;
@@ -32,7 +31,6 @@ new Vue({
                 } else {
                     this.newGame = true;
                     this.playerHealth = 0;
-                    this.monsterHealth = 0;
                 }
                 return true;
             }
