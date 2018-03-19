@@ -45,7 +45,7 @@ new Vue({
                 monstersTurn: true,
                 text: 'The monster has attacked with ' + damage + ' attack points'
             });
-            this.checkWinner(); //Doesn't need a return call after because there is no more ocde in the function
+            this.checkWinner(); //Doesn't need a return call after because there is no more code in the function
         },
         attack: function () {
             // Deal damage to the Monster
