@@ -9,11 +9,17 @@ body, html {
 
 #app {
     height: 100vh;
-    margin-top: 40px;
+    margin-top: 15px;
 }
 
 .text-center {
     text-align: center;
+}
+
+img {
+    max-width: 50%;
+    margin: auto;
+    display: block;
 }
 
 .healthbar {
