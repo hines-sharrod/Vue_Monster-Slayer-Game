@@ -18,7 +18,7 @@ new Vue({
         },
         checkWinner: function () {
             if (this.monsterHealth <= 0) {
-                if (confirm('You Defeated the Monster! New Game?')) {
+                if (confirm('You Defeated your opponent! New Game?')) {
                     this.startNewGame();
                 } else {
                     this.newGame = true;
@@ -26,7 +26,7 @@ new Vue({
                 }
                 return true;
             } else if (this.playerHealth <= 0) {
-                if (confirm('You were Defeated by the Monster! New Game?')) {
+                if (confirm('You were Defeated by your opponent! New Game?')) {
                     this.startNewGame();
                 } else {
                     this.newGame = true;
@@ -43,7 +43,7 @@ new Vue({
             this.playerHealth -= damage;
             this.turns.unshift({
                 monstersTurn: true,
-                text: 'The monster has attacked with ' + damage + ' attack points'
+                text: 'Your opponent has attacked with ' + damage + ' attack points'
             });
             this.checkWinner(); //Doesn't need a return call after because there is no more code in the function
         },
@@ -53,7 +53,7 @@ new Vue({
             this.monsterHealth -= damage;
             this.turns.unshift({
                 playersTurn: true,
-                text: 'The player has attacked with ' + damage + ' attack points'
+                text: 'You attacked with ' + damage + ' attack points'
             });
             // Check if the Monster has been defeated
             if (this.checkWinner()) {
@@ -67,7 +67,7 @@ new Vue({
             this.monsterHealth -= damage;
             this.turns.unshift({
                 playersTurn: true,
-                text: 'The player has attacked hard with ' + damage + ' attack points'
+                text: 'You attacked hard with ' + damage + ' attack points'
             });
             // Check if the Monster has been defeated
             if (this.checkWinner()) {
@@ -83,7 +83,7 @@ new Vue({
             }
             this.turns.unshift({
                 playersTurn: true,
-                text: 'The player has healed with a potion adding 10 to their health'
+                text: 'You have healed with a potion adding 10 to their health'
             });
             this.monsterAttack();
         },
