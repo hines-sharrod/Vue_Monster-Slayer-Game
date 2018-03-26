@@ -4,13 +4,15 @@ new Vue({
         playerHealth: 0,
         monsterHealth: 0,
         newGame: true,
-        turns: []
+        turns: [],
+        healingAllowed: true
     },
     methods: {
         startNewGame: function () {
             this.newGame = false;
             this.playerHealth = 100;
             this.monsterHealth = 100;
+            this.healingAllowed = true;
             this.turns = [];
         },
         calculateDamage: function (min, max) {
@@ -60,6 +62,8 @@ new Vue({
                 return; //Stops the game if there is a winner at this point
             }
             this.monsterAttack();
+            this.healingAllowed = false;
+
         },
         specialAttack: function () {
             var damage = this.calculateDamage(10, 20);
@@ -74,6 +78,7 @@ new Vue({
                 return; //Stops the game if there is a winner at this point
             }
             this.monsterAttack();
+            this.healingAllowed = false;
         },
         heal: function () {
             if (this.playerHealth <= 90) {
