@@ -65,11 +65,13 @@ img {
     background-color: #FF0000;
     color: #FFF;
     margin: 5px 0;
+    list-stle: none;
 }
 
 .playersTurn {
     background-color: cornflowerblue;
     color: #FFF;
+    list-style: none;
 }
 
 button {
