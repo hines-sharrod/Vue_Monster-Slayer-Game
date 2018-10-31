@@ -11,6 +11,10 @@ body, html {
     height: 100vh;
 }
 
+li {
+    list-style: none;   
+}
+
 #app {
     height: 100vh;
     margin-top: 15px;
